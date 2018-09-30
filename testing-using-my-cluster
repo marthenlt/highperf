@@ -1,0 +1,9 @@
+openssl genrsa -out nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com.key 2048
+
+openssl req -new -key nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com.key -out nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com.csr -subj "/C=US/ST=CA/L=Mountain View/O=OS3/OU=Eng/CN=nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com"
+
+openssl x509 -req -days 366 -in nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com.csr -signkey nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com.key -out nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com.crt
+
+oc create route edge --service=nodejs-mongo-persistent --key=nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com.key --cert=nodejs-mongo-persistent-app1.apps.7b84.example.opentlc.com.crt
+
+
